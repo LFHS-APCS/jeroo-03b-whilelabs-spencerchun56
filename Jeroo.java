@@ -33,11 +33,16 @@ public class Jeroo extends JerooBase {
      */
     public void clearFlowersToWater() 
     {
+      pick();
+      while(isFlower(AHEAD)){
+        hop();
+        pick();
+      }
         // while(<test>) //Step 2: Use the opposite of Step 1's result as the <test>
-        {
+        
             // Step 3:  Make progress towards the goal inside the loop
             
-        }
+        
         // Step 1:  At the end of the while loop, what should be true?
         
     }
@@ -50,15 +55,27 @@ public class Jeroo extends JerooBase {
      * 3.  Make progress towards the goal within the loop.
      */
     public void faceNorth() {
-
-    }
+      while(!isFacing(NORTH)){
+        turn(LEFT);
+        }
+      }
 
     /**
      * The Jeroo should move to (0,0) 
      * no matter where it is or which way it is facing.
      */
     public void goToOrigin() {
-
+      while(!isFacing(WEST)){
+        turn(LEFT);
+        }
+        while(!isWater(AHEAD)){
+          hop();
+        }
+      turn(RIGHT);
+      while(!isWater(AHEAD)){
+            hop();
+          
+      }
     }
 
     /**
@@ -67,9 +84,27 @@ public class Jeroo extends JerooBase {
      * The Jeroo should stop as soon as there is a net in front of it.       
      */
     public void meander() {
+      // ARONSON:  You are supposed to stop when there is
+      //   a Net ahead, not a flower!
+      // You can use isFlower(LEFT), isFlower(RIGHT) to
+      // check to see if there is a flower on left or right
+      while(!isNet(AHEAD)){
+        
+        if(isFlower(AHEAD)){
 
+        } else if (isFlower(LEFT)  )   {
+          turn(LEFT);
+          
+        } else if (isFlower(RIGHT)){
+          turn(RIGHT);
+        
+        }
+        hop();
+
+
+      }  
+      // isNet(AHEAD)
     }
-
     // Do NOT touch the code below here
     public Jeroo() {super();}
 
